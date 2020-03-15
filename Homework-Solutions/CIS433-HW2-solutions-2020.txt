@@ -1,0 +1,26 @@
+1. Read the following about the Heartbleed bug.  Then discuss how you would fix it. 
+
+Since heartbleed takes advantage of a malformed heartbeat request (i.e., requesting a small payload, but lying and saying it is large), the function should just check that the user input makes sense (i.e., that the payload request matches the length).
+
+2. Describe how the following virus works.
+
+The virus starts with the subroutine 'infect-executable'. This routine grabs a random executable file and checks if its first line is '1234567'.  If true, the function grabs a new random executable and again checks if the first line matches ’1234567’.  If false, the function will append itself to the executable file. The running executable files infected by this virus will wait in the background until some condition defined in subroutine 'trigger-pulled' is satisfied. The infected executable files will then do the damage as it defined in the subroutine 'do-damage'.
+
+3. Textbook, Chapter 3 Exercises, Problem 20.  Open design would seem to favor the attacker, because it certainly opens the implementation and perhaps also the design for the attacker to study. Justify that open design overrides this seeming advantage and actually leads to solid security.
+
+A system should not rely on the assumption that the adversaries do not know the system design. Because it is not realistic to assume secrecy for software that will be widely used, such an assumption creates an illusion that the system is secure. Open design allows not only the attackers to study the system but also allows other security professionals to inspect the system who can reveal any vulnerabilities and resolve them than a system does not disclose its design. 
+
+4. Protected page address translation.  Consider the page address translation process as reflected in Figure 5-13 (Page 307 of the textbook or Slide of 15 of lecture 7-8).
+
+(1) How would you enhance the process to add page access control? 
+In order to enhance and protect the page translation process from the book without using segmentation (it is also fine if you say segmentation), one way is to add a new column to the page translation table to allow the page translation process to check the owner of each page.
+
+(2) How would you modify the figure to add virtual memory management? (hint: page fault)
+One could add virtual memory management by adding a hit/miss column to the page translation table. With virtual memory management you are essentially telling many programs that they have access to memory even if there isn't enough memory for all programs to access at the same time. This causes some information to have to be stored on disk, but once the page replacement algorithm is chosen, you can add a hit/miss column in the page translation table indicating when the program may actually be on disk rather than in memory.
+
+(3) How would you protect the page translation table itself?
+One could protect the actual page translation table by giving it access control itself. Since the kernel is the one that tells a process which pages it has access too, it is the only one that needs to ever update the page translation table. Let the page table be in memory and then the kernel will just never give a process access to those pages. You could also mention other security goals such as protecting the integrity or confidentiality the page translation table.
+
+(4) Can memory access be potentially out of bound?  If so, how would you address it?
+Since all the pages are of the same size and the logical program has a finite number of pages, the page translation table for that program is also finite. The only way an out of bounds access could occur is if the program access something outside of its virtual memory space, which is protected by a base and bounds pair, or if the kernel updated the page translation table incorrectly.
+

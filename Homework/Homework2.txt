@@ -1,0 +1,73 @@
+This homework covers the materials in Lectures 5-8.  
+
+1. Read the following about the Heartbleed bug.  Then discuss how you would fix it.  (5 pts)
+
+Heartbleed is a security bug in the OpenSSL cryptography library, which is a widely used implementation of the Transport Layer Security (TLS) protocol.  It results from improper input validation (due to a missing bounds check) in the implementation of the TLS heartbeat extension, thus the bug's name derives from heartbeat.  The vulnerability is classified as a buffer over-read, a situation where more data can be read than should be allowed.
+
+The RFC 6520 Heartbeat Extension tests TLS/DTLS secure communication links by allowing a computer at one end of a connection to send a Heartbeat Request message, consisting of a payload, typically a text string, along with the payload's length as a 16-bit integer. The receiving computer then must send exactly the same payload back to the sender.
+
+The affected versions of OpenSSL allocate a memory buffer for the message to be returned based on the length field in the requesting message, without regard to the actual size of that message's payload. Because of this failure to do proper bounds checking, the message returned consists of the payload, possibly followed by whatever else happened to be in the allocated memory buffer.
+
+Heartbleed is therefore exploited by sending a malformed heartbeat request with a small payload and large length field to the vulnerable party (usually a server) in order to elicit the victim's response, permitting attackers to read up to 64 kilobytes of the victim's memory that was likely to have been used previously by OpenSSL. Where a Heartbeat Request might ask a party to "send back the four-letter word 'bird'", resulting in a response of "bird", a "Heartbleed Request" (a malicious heartbeat request) of "send back the 500-letter word 'bird'" would cause the victim to return "bird" followed by whatever 496 characters the victim happened to have in active memory. Attackers in this way could receive sensitive data, compromising the confidentiality of the victim's communications. Although an attacker has some control over the disclosed memory block's size, it has no control over its location, and therefore cannot choose what content is revealed.
+
+2. Describe how the following virus works.   (5 pts)
+
+Program V := 
+
+{goto main;
+
+1234567;
+
+subroutine infect-executable :=
+
+            {loop: file:= get-random-executable-file;
+
+                      if (first-line-of-file = 1234567) then goto loop
+
+                      else prepend V to file;
+
+             }
+
+subroutine do-damage := 
+
+             { whatever damage is to be done
+
+             }
+
+subroutine trigger-pulled :=
+
+              { return true if some condition holds
+
+              }
+
+main:
+
+              main-program :=
+
+              {infect-executable;
+
+               if trigger-pulled then do-damage;
+
+               goto next;
+
+               }
+
+next:
+
+}
+
+ 
+
+3. Textbook, Chapter 3 Exercises, Problem 20.  Open design would seem to favor the attacker, because it certainly opens the implementation and perhaps also the design for the attacker to study. Justify that open design overrides this seeming advantage and actually leads to solid security.  (2 pts)
+
+ 
+
+4. Protected page address translation.  Consider the page address translation process as reflected in Figure 5-13 (Page 307 of the textbook or Slide of 15 of lecture 7-8).   (3 pts)
+
+(1) How would you enhance the process to add page access control?  
+
+(2) How would you modify the figure to add virtual memory management? (hint: page fault)
+
+(3) How would you protect the page translation table itself?
+
+(4) Can memory access be potentially out of bound?  If so, how would you address it?

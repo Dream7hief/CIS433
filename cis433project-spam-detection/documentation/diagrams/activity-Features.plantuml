@@ -1,0 +1,18 @@
+@startuml
+(*) ->[received] Email
+Email -down> [Convert the email to\nthe system's internal format] Parser
+Parser -down->[Extract features that\nmay be useful for the evaluation] ===FeatureSet===
+
+===FeatureSet=== --> "Feat." as Feature1
+--> ===FeatureSetEnd==
+===FeatureSet=== --> "Feat." as Feature2
+--> ===FeatureSetEnd==
+===FeatureSet=== --> "Feat." as Feature3
+--> ===FeatureSetEnd==
+
+
+
+===FeatureSetEnd=== -->[Evaluate the given email's\nfeatures against the model] Model
+Model -down->[Results are calculated as\nwhether the email is\nlikely to be malicious or not] Result
+Result -> [Result can be used by\na phishing/spam\nprotection system] (*)
+@enduml

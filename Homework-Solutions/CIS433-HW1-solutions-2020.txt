@@ -1,0 +1,70 @@
+1. For example:
+	Something the user knows: 	A 6-digit pin code
+	Something the user has:		A physical key
+	Something the user is:		A fingerprint scanner
+
+2. Textbook, Section 2.4 Exercises, Problem 1.  (1.5 points)
+Describe each of the following four kinds of access control mechanisms in terms of: 
+(a) ease of determining authorized access during execution, 
+(b) ease of adding access for a new subject, 
+(c) ease of deleting access by a subject, 
+and (d) ease of creating a new object to which all subjects by default have access.
+• Per-subject access control list (that is, one list for each subject tells all the objects to which that subject has access)
+• Per-object access control list (that is, one list for each object tells all the subjects who have access to that object)
+• Access control matrix
+• Capability
+
+Per-subject access control: 
+(a) A simple lookup from the list, which can be an O(1) operation in the average case if implemented as a hash table. 
+(b) An addition to that subject’s list, which can effectively be an O(1) operation. 
+(c) A removal from that subject’s list, which can effectively be an O(1) operation. 
+(d) An entry needs to be added to all subjects’ lists, which is an O(n) operation where n is the number of subjects.
+
+Per-object access control: 
+(a) A simple lookup from the list, which can effectively be an O(1) operation. 
+(b) An addition to the list, which can effectively be an O(1) operation. 
+(c) A removal from the list, which can effectively be an O(1) operation. 
+(d) In this model, default access rights for an object can be set, so this, too, can be an O(1) operation.
+
+Access control matrix: 
+(a) This is essentially a lookup by subject and object, and the speed depends on implementation, but is likely O(n). 
+(b) Assuming the subject is being newly created, a new row must be added to the matrix, which can be quite costly depending on implementation (potentially requiring the whole table to be copied). 
+(c) This is essentially a lookup by subject and object, and the speed depends on implementation, but is likely O(n). 
+(d) Depending on implementation, creating a new object may require making a copy of the whole table, which would be O(n^2), or may just require adding a new entry to an existing table, which can be made to have a default entry for a performance of O(1).
+
+Capability: 
+The capability model needs to be backed by one of the other models, so, depending on implementation, it can effectively have the same performance as any of the other models. The only potential difference is in revocation, where the need to track capability “tickets” for revocation becomes an issue.
+
+
+3. (1) An ACL that specifies who can send traffic to Alice's machine. From Alice's point of view, she doesn't need to know where else each sender is allowed to send traffic.
+   (2) A directory on each potential sender's machine that specifies which machines it can send traffic to. Similar reasoning as above. 
+   (3) A capability or ticket that go with the traffic that Alice can verify the capability or ticket to decide if to accept the traffic.
+
+4. Just follow the RSA formula:
+n=6 implies p=2 and q=3
+phi = (p-1)(q-1) = 1*2 = 2
+Choose e such that GCD(e, phi) = 1: e=1
+Choose d such that e*d mod phi = 1: d=1
+Encryption: 5^1 mod 6 = 5
+Decryption: 5^1 mod 6 = 5
+
+5. Diffie-Hellman works as follows.
+Alice and Bob publicly agree to use a specific prime,(e.g., p = 13) and base that is a primitive root modulo the chosen prime (e.g., g = 6 is a primitive root of 13).
+
+Alice chooses a secret integer (e.g., a = 4) and sends Bob the following: A = g^a mod p
+A = 6^4 mod 13 = 9
+Bob chooses a secret integer (e.g., b = 3) and sends Alice the following: B = g^b mod p
+B = 6^3 mod 13 = 8
+
+Alice computes s = B^a mod p
+s = 8^4 mod 13 = 1
+Bob computes s = A^b mod p
+s = 9^3 mod 13 = 1
+
+Alice and Bob now share a secret (the number 1). 
+
+This algorithm is resistant due to the Discrete Log Problem (DLP) in which we assume it is computationally difficult to identify the base of an exponent under modulo. 
+
+6. Say Alice wants to send the message m. She can pick a secret key k and encrypt m using a classic key algorithm (e.g. AES).  Further, because she knows each public key, she encrypts k using everyone's public key to create 50 encrypted versions of k and prepend them in the encrypted message.
+
+7. Cathy: h(2,2), h(3,4).  Bob: h(1,1), h(3,4).  Alice: h(4,4), h(1,2).  David: h(3,3), h(1,2).

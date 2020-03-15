@@ -1,0 +1,21 @@
+This homework covers the materials in Lectures 9-12 on network security.  
+
+Totally 10 problems.  
+
+Textbook, Chapter 6 Exercises, Problems 15, 16, 25, 27, 37, 41.  (2 points each.)
+
+7. In the SSL protocol we discussed in class, Bob presents his certificate to Alice, but Alice does not present her certificate to Bob.  Enhance the SSL protocol so that Alice presents her certificate to Bob as well.  Draw the new diagram to illustrate how the enhanced SSL works, and explain what this enhancement achieves.  (4 points)
+
+8. Worm detection can be either signature-based or anomalous-behavior-based.  List three reasons/scenarios when anomalous-behavior-based worm detection is preferred. (3 points)
+
+9. One often deploys layered encryption to secure a routing protocol.  For example, a routing update originated from router A to B and then to C before reaching the last hop X will be protected as follows:
+
+update when leaving A: {A, sig_by_A}
+
+update when leaving B: {B, {A, sig(A)}}, sig_by_B}
+
+update when leaving C: {C, {B, {A, sig(A)}}, sig_by_B}, sig_by_C
+
+Explain how B, C, and X will verify the integrity of the update. Discuss the vulnerability with this design we discussed in the class. (3 points)
+
+10. Discuss how you would protect a DNS client from receiving a spoofed DNS response from a malicious attacker, instead of the authentic response from the legitimate DNS server. (3 points)

@@ -1,0 +1,17 @@
+1. Slide 13 of Lecture 14 (Cloud Computing) illustrates Lastpass TNO implementation.  Read the slide carefully, probably together with the accompanying text in the textbook, and answer the following questions:
+
+(1) What is Lastpass used for?
+
+(2) How does user authentication work?
+
+(3) How does database decryption work?
+
+(4) For user authentication 5001 rounds of SHA256 are run and for decryption key 5000 rounds of SHA256 are run.  Can you swap the two numbers of rounds of SHA256, in another words, can you run 5000 rounds of SHA256 for user authentication and 5001 rounds of SHA256 for decryption key ?  Why?
+
+2. Slide 22 of Lecture 15-2  (legal and ethical issues in computer security) describes a story on ownership of programs.  This story certainly has major legal implications. Virtually everyone could sue everyone else.  Let us set aside the legal aspects and look at the ethical issues. We want to determine who might have done what, and what changes might have been possible to prevent a tangle for the courts to unscramble.
+
+Let us explore the principles involved:
+• Rights. What are the respective rights of Greg, Cathy, Star, and Purple?
+• Basis. What gives Greg, Cathy, Star, and Purple those rights? What principles of fair play, business, property rights, and so forth are involved in this case?
+• Priority. Which of these principles are inferior to which others? Which ones take precedence? (Note that it may be impossible to compare two different rights, so the outcome of this analysis may yield some rights that are important but that cannot be ranked first, second, third.)
+• Additional information. What additional facts do you need in order to analyze this case? What assumptions are you making in performing the analysis? 

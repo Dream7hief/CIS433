@@ -1,0 +1,19 @@
+1. Design a "smart" lock for your home that does a 3-factor authentication that checks something the user knows  AND something the user has AND something the user is.  (2 points)
+
+2. Textbook, Section 2.4 Exercises, Problem 1.  (1.5 points)
+
+3. You are charged to protect the machine of Alice from receiving unwanted traffic from machines on a blacklist.   (4.5 points)
+
+(1) If the access control can only be done on the machine of Alice, will the implementation of access control be an ACL, or a directory?   Explain briefly.  
+
+(2) If the access control can only be done on the senders of all traffic, will the implementation of access control be an ACL, or a directory?    Explain briefly.
+
+(3) If the access control can only be done by having the traffic carry certain information, what will be the access control implementation you would choose?   Explain briefly.
+
+4. RSA. With n=6, show the procedure how you may choose a corresponding public and private key, and verify it works for a plain text P=5.  (2 points)
+
+5. Describe how Diffie-Hellman key exchange protocol works, and why it is resilient against eavesdroppers. (3 points)
+
+6. Alice has 50 friends, and she wishes to send all of them a common message secretly. That is, each friend will receive the same message, and only these 50 friends can decrypt it. Alice knows the public key of each of them. How would you design the message for Alice?  (4 points)
+
+7. In our lecture on the Uses of Encryption, on the slide entitled "Authentication Path," how would the certificates for Cathy, Bob, Alice, David look like?  (3 points)
